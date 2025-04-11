@@ -18,9 +18,9 @@ public class Board {
     }
 
     //Coverts move coordinates [x, y] into a useable number of 0-8
-    public int boardCoordinateToNum(int[] move) {
-        int col = move[0];
-        int row = move[1];
+    public int boardCoordinateToNum(int[] moveCoordinate) {
+        int col = moveCoordinate[0];
+        int row = moveCoordinate[1];
         int moveNum = (((row + 1) * (col + 1)) - 1);
 
         return moveNum;
@@ -28,16 +28,16 @@ public class Board {
 
     //Converts board num 0-8 into coordinates [x, y]
     public int[] boardNumToCoordinate(int move) {
-        int[] coordinate = new int[2];
+        int[] moveCoordinate = new int[2];
         int row, col;
 
         row = move / 3;
         col = move % 3;
 
-        coordinate[0] = col;
-        coordinate[1] = row;
+        moveCoordinate[0] = col;
+        moveCoordinate[1] = row;
 
-        return coordinate;
+        return moveCoordinate;
     }
 
     //Displays board in a tic-tac-toe format:
@@ -47,6 +47,18 @@ public class Board {
                 System.out.print(board[i][j]);
             }
             System.out.println();
+        }
+    }
+
+    //Makes a move, replacing a board character with symbol
+    public void makeMove(int move, char symbol) throws InvalidMoveException {
+        int[] moveCoordinate = boardNumToCoordinate(move);
+        
+        if (board[moveCoordinate[1]][moveCoordinate[0]] == '#') {
+            board[moveCoordinate[1]][moveCoordinate[0]] = symbol;
+        }
+        else {
+            throw new InvalidMoveException("Board space already taken");
         }
     }
 }
