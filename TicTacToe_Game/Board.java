@@ -51,7 +51,10 @@ public class Board {
     }
 
     //Makes a move, replacing a board character with symbol
-    public void makeMove(int move, char symbol) throws InvalidMoveException {
+    public void makeMove(int move, char symbol) throws InvalidMoveException, ArrayIndexOutOfBoundsException {
+        if (move < 0 || move > 8) {
+            throw new ArrayIndexOutOfBoundsException("Invalid input: Out of bounds");
+        }
         int[] moveCoordinate = boardNumToCoordinate(move);
         
         if (board[moveCoordinate[1]][moveCoordinate[0]] == '#') {
