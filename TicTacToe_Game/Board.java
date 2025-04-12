@@ -5,7 +5,6 @@
 
 
 public class Board {
-    //TODO: Create 2d array board
     private char[][] board;
 
     //Constructor, initializes board

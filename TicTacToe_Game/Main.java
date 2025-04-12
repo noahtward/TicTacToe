@@ -8,11 +8,16 @@ public class Main {
         Random random = new Random();
         Board gameBoard = new Board();
         
-        gameBoard.displayBoard();
-        playerMove(input, gameBoard);
-        gameBoard.displayBoard();
+        while (true) {
+            gameBoard.displayBoard();
+            newLine(1);
+            playerMove(input, gameBoard);
+            gameBoard.displayBoard();
+            newLine(1);
+            computerMove(random, gameBoard);
+        }
         
-        input.close(); //Close scanner
+        // input.close(); //Close scanner
     }
 
     //Gets and makes player's move
@@ -44,9 +49,16 @@ public class Main {
 
         try {
             board.makeMove(move, symbol);
+            System.out.println("Computer made move " + (move + 1));
         }
         catch (Exception e) {
             System.out.println("Computer error");
+        }
+    }
+
+    public static void newLine(int num) {
+        for (int i = 0; i < num; i++) {
+            System.out.println();
         }
     }
 }
